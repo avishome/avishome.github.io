@@ -12,6 +12,7 @@ list2 = t.map((x)=>x[0].split("-"));
 pull = [];
 countTrue = 0;
 for(x of list1) if(x.length == 4)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0],"NumAnsZeroT":x[3][0]});
+if(pull.length == 0) for(x of list1) if(x.length == 3)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0]});
 for(i=0;i<list2.length; i++) for(x of pull) if(list2[i][0].slice(1)==x.num+1) {x.aswer=list2[i][1]; if(x.aswer == x.trueAnswer) {x.result = true; countTrue++;} else x.result = false;}
 console.log(JSON.stringify(pull));
 document.getElementById('grade').innerText = countTrue + "/" + pull.length + "=" + (countTrue / pull.length)*100 + "%";
@@ -35,6 +36,23 @@ paging: false,
 } );
 }
 </script>
+<style>
+img {
+	display:none;
+	}
+div:hover + img {
+  display: block;
+}
+#help {
+  display: none;
+}
+  
+#DataEnter:hover + #help {
+  display: block;
+}
+</style>
 <div id="DataEnter">
 <input id="Output"/>
-<input onclick="calculte(document.getElementById('Output').value);document.getElementById('DataEnter').style.display = 'none' " type="submit" value="פיענוח טופס מעורבל" class="ui-button ui-corner-all ui-widget" role="button"></div>
+<input onclick="calculte(document.getElementById('Output').value);document.getElementById('DataEnter').style.display = 'none' " type="submit" value="פיענוח טופס מעורבל" class="ui-button ui-corner-all ui-widget" role="button">
+</div>
+<img id="help" src="selectedData.png" />
