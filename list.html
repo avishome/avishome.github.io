@@ -1,58 +1,129 @@
 <html dir="rtl">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.css"/>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
-<h2 id="grade" style="direction: ltr"></h2>
-<table id="example" class="display" width="60%" style="direction: rtl;"></table>
-<script>
-function calculte(Textdata){
-text = Textdata;
-t = text.split("| ").map((x)=>x.split(" "));
-list1 = t.map((x)=>x.map((y)=>/(\d+)/.exec(y)));
-list2 = t.map((x)=>x[0].split("-"));
-pull = [];
-countTrue = 0;
-for(x of list1) if(x.length == 4)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0],"NumAnsZeroT":x[3][0]});
-if(pull.length == 0) for(x of list1) if(x.length == 3)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0]});
-for(i=0;i<list2.length; i++) for(x of pull) if(list2[i][0].slice(1)==x.num+1) {x.aswer=list2[i][1]; if(x.aswer == x.trueAnswer) {x.result = true; countTrue++;} else x.result = false;}
-console.log(JSON.stringify(pull));
-document.getElementById('grade').innerText = countTrue + "/" + pull.length + "=" + (countTrue / pull.length)*100 + "%";
-console.log(countTrue + "/" + pull.length + "=" + (countTrue / pull.length)*100 + "%");
-newT(pull);
-}
-function newT(pullData){
-$('#example').dataTable( {
-fixedColumns:   true,
-paging: false,
-"searching": false,
-    "data": pullData,
-    "columns": [
-        { "data": "num", "title":"מס. שאלה בטופס שלך" },
-		{ "data": "aswer", "title":"התשובה שלך" },
-        { "data": "trueAnswer", "title":"התשובה הנכונה" },
-		{ "data": "NumAnsZeroT", "title":"התשובה שענית בטופס 0" },
-        { "data": "NumQZeroT","title":"מס. שאלה בטופס 0" },
-		{ "data": "result","title":"תוצאה" }
-    ]
-} );
-}
-</script>
-<style>
-img {
-	display:none;
-	}
-div:hover + img {
-  display: block;
-}
-#help {
-  display: none;
-}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.css"/>
+	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
   
-#DataEnter:hover + #help {
-  display: block;
-}
-</style>
-<div id="DataEnter">
-<input id="Output"/>
-<input onclick="calculte(document.getElementById('Output').value);document.getElementById('DataEnter').style.display = 'none' " type="submit" value="פיענוח טופס מעורבל" class="ui-button ui-corner-all ui-widget" role="button">
-</div>
-<img id="help" src="selectedData.png" />
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<style>
+		img {
+			display:none;
+			}
+		div:hover + img {
+		  display: block;
+		}
+		#help {
+		  display: none;
+		}
+		  
+		#DataEnter:hover + #help {
+		  display: block;
+		}
+	</style>
+	
+	<script>
+		function calculte(Textdata,sharing){
+		text = Textdata;
+		t = text.split("| ").map((x)=>x.split(" "));
+		list1 = t.map((x)=>x.map((y)=>/(\d+)/.exec(y)));
+		list2 = t.map((x)=>x[0].split("-"));
+		pull = [];
+		countTrue = 0;
+		for(x of list1) if(x.length == 4)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0],"NumAnsZeroT":x[3][0]});
+		if(pull.length == 0) for(x of list1) if(x.length == 3)pull.push({"num":x[0][0]-1,"trueAnswer":x[1][0],"NumQZeroT":x[2][0]});
+		for(i=0;i<list2.length; i++) for(x of pull) if(list2[i][0].slice(1)==x.num+1) {x.aswer=list2[i][1]; if(x.aswer == x.trueAnswer) {x.result = true; countTrue++;} else x.result = false;}
+		console.log(JSON.stringify(pull));
+		document.getElementById('grade').innerText = countTrue + "/" + pull.length + "=" + (countTrue / pull.length)*100 + "%";
+		console.log(countTrue + "/" + pull.length + "=" + (countTrue / pull.length)*100 + "%");
+		if(sharing) Test(pull); else Test("");
+		
+		}
+		function newT(pullData){
+		$('#example').dataTable( {
+		fixedColumns:   true,
+		paging: false,
+		"searching": false,
+			"data": pullData,
+			"columns": [
+				{ "data": "num", "title":"מס. שאלה בטופס שלך" },
+				{ "data": "aswer", "title":"התשובה שלך" },
+				{ "data": "trueAnswer", "title":"התשובה הנכונה" },
+				{ "data": "NumAnsZeroT", "title":"התשובה שענית בטופס 0" },
+				{ "data": "NumQZeroT","title":"מס. שאלה בטופס 0" },
+				{ "data": "result","title":"תוצאה" },
+				{ "data": "presentLikeYou","title":"אחוזים כמוך" }
+			]
+		} );
+		}
+	</script>
+	 <script>
+	  $( function() {
+		$.ajax( {
+		  url: "https://us-central1-vivid-fragment-225620.cloudfunctions.net/function-1",
+		  dataType: "jsonp",
+		  success: function( data ) {
+			$( "#birds" ).autocomplete({
+				source: data
+			});
+		  }
+		} );
+	  } );
+	  
+	  function Test(pullData){
+		if($( "#birds" ).val() == "" && pullData!= "") { alert("לא נבחר קורס לשיתוף"); return; }
+		answer = [];
+		for(i=0 ;i < pullData.length;i++){answer[i]=0;}
+		for(x of pullData){answer[x.NumQZeroT-1]=x.NumAnsZeroT}
+		console.log(answer.join(""));
+		$.ajax( {
+		  url: "https://us-central1-vivid-fragment-225620.cloudfunctions.net/function-2",
+		  dataType: "jsonp",
+		  data: {
+            Test: $( "#birds" ).val(),
+			UserD: answer.join("")
+          },
+		  success: function( data ) {
+			$("body").data(data);
+			if($( "#birds" ).val() == "") for(t of pull){t.presentLikeYou=0}
+			else
+			for(t of pull){
+				sum = 0;
+				for (z of data[t.NumAnsZeroT-1])
+					sum+=z;
+				sum-=data[t.NumAnsZeroT-1][0] // remove notanswer
+				t.CountLikeYou = data[t.NumQZeroT-1][t.NumAnsZeroT]
+				t.presentLikeYou = (t.CountLikeYou/sum)*100
+				}
+			document.getElementById('form').style.display = 'none';
+			newT(pull);
+			
+		  }
+		} );
+	  }
+	  
+	 </script>
+
+	
+	<h2 id="grade" style="direction: ltr"></h2>
+	<table id="example" class="display" width="60%" style="direction: rtl;"></table>
+
+	<div id="form" class="ui-widget">
+		<div id="DataEnter">
+			<label for="Output">פלט המבחן המעורבל: </label>
+			<input id="Output"/>
+		</div>
+		<img style="float:left" id="help" src="selectedData.png" />
+		<div>
+			<label for="birds">שם הקורס: </label>
+			<input id="birds">
+		</div>
+	<input onclick="calculte(document.getElementById('Output').value,true); " type="submit" value="פיענוח טופס מעורבל ושיתוף תוצאה" class="ui-button ui-corner-all ui-widget" role="button">
+	<input onclick="calculte(document.getElementById('Output').value,false); " type="submit" value="פיענוח טופס מעורבל ללא שיתוף התוצאה" class="ui-button ui-corner-all ui-widget" role="button">
+
+	<div class="ui-widget">
+	  <div id="log"></div>
+	</div>
+	</div>
+	
+
+
