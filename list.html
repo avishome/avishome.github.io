@@ -72,15 +72,19 @@
 	  function Test(pullData){
 		if($( "#birds" ).val() == "" && pullData!= "") { alert("לא נבחר קורס לשיתוף"); return; }
 		answer = [];
+		sortQ = [];
 		for(i=0 ;i < pullData.length;i++){answer[i]=0;}
 		for(x of pullData){answer[x.NumQZeroT-1]=x.NumAnsZeroT}
+		for(i=0 ;i < pullData.length;i++){sortQ[i]=0;}
+		for(x of pull){sortQ[x.NumQZeroT-1]=x.num}
 		console.log(answer.join(""));
 		$.ajax( {
 		  url: "https://us-central1-vivid-fragment-225620.cloudfunctions.net/function-2",
 		  dataType: "jsonp",
 		  data: {
-            Test: $( "#birds" ).val(),
-			UserD: answer.join("")
+            		Test: $( "#birds" ).val(),
+			UserD: answer.join(""),
+			UserQ: sortQ.join("")
           },
 		  success: function( data ) {
 			$("body").data(data);
