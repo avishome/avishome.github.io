@@ -6,7 +6,7 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	
 	<style>
-		img {
+		img, #ft {
 			display:none;
 			}
 		div:hover + img {
@@ -68,6 +68,25 @@
 		  }
 		} );
 	  } );
+	  function statisticView(s){
+		count=1;
+		s.map((x)=>x[0]=count++)
+		  $('#example2').dataTable( {
+				fixedColumns:   true,
+				paging: false,
+				"searching": false,
+					"data": s,
+					"columns": [
+						{  "title":"מספר שאלה" },
+						{  "title":"תשובה א" },
+						{  "title":"תשובה ב" },
+						{ "title":"תשובה ג" },
+						{ "title":"תשובה ד" },
+						{ "title":"תשובה ה" },
+						{ "title":"תשובה ו" }
+					]
+				} );
+	  }
 	  
 	  function Test(pullData){
 		if($( "#birds" ).val() == "" && pullData!= "") { alert("לא נבחר קורס לשיתוף"); return; }
@@ -99,18 +118,26 @@
 				t.presentLikeYou = (t.CountLikeYou/sum)*100
 				}
 			document.getElementById('form').style.display = 'none';
+			document.getElementById('ft').style.display = 'block';
 			newT(pull);
+			statisticView(data);
 			
 		  }
 		} );
 	  }
+	 
 	  
 	 </script>
 
 	
 	<h2 id="grade" style="direction: ltr"></h2>
+	<center id="ft">
+	<a href="#example">הטופס שלך</a>
+	<br />
+	<a href="#example2">סטטיסטיקה על כלל הטפסים</a>
+	</center>
 	<table id="example" class="display" width="60%" style="direction: rtl;"></table>
-
+	<table id="example2" class="display" width="60%" style="direction: rtl;"></table>
 	<div id="form" class="ui-widget">
 		<div id="DataEnter">
 			<label for="Output">פלט המבחן המעורבל: </label>
@@ -121,8 +148,9 @@
 			<label for="birds">שם הקורס: </label>
 			<input id="birds">
 		</div>
-	<input onclick="calculte(document.getElementById('Output').value,true); " type="submit" value="פיענוח טופס מעורבל ושיתוף תוצאה" class="ui-button ui-corner-all ui-widget" role="button">
-	<input onclick="calculte(document.getElementById('Output').value,false); " type="submit" value="פיענוח טופס מעורבל ללא שיתוף התוצאה" class="ui-button ui-corner-all ui-widget" role="button">
+	<input onclick="calculte(document.getElementById('Output').value,true); " type="submit" value="פיענוח טופס מעורבל" class="ui-button ui-corner-all ui-widget" role="button">
+	<input onclick="calculte(document.getElementById('Output').value,false); " type="submit" value="פיענוח טופס מעורבל ללא שליחת סטטיסטיקה" class="ui-button ui-corner-all ui-widget" role="button">
+	<input onclick="calculte(document.getElementById('Output').value,false); " id="stat" type="submit" value="צפיה בסטטיסטיקה" class="ui-button ui-corner-all ui-widget" role="button">
 
 	<div class="ui-widget">
 	  <div id="log"></div>
