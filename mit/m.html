@@ -1,0 +1,200 @@
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script>
+
+window.onload = window.onresize = ()=>{
+min = Math.min(window.innerHeight - window.innerHeight*0.05,window.innerWidth-window.innerWidth*0.05)
+	document.getElementById("win").style.width = min;
+	x=document.getElementsByClassName("it");
+	u=[210,190,180,150,160,170,240]
+	t=[200,0,130,-21,150,28,103]
+	l =[0,105,154,206,261,300,310]
+	for(var i=0; i<x.length; i++){x[i].style.width = u[i]+"px"; x[i].style.top = t[i]+"px"; x[i].style.right = "-"+l[i]+"px";}
+	}
+	function SRight(){$("#innerart").scrollLeft($("#innerart").scrollLeft()+20,0)}
+	function SLeft(){$("#innerart").scrollLeft($("#innerart").scrollLeft()-20,0)}
+	//window.onload = ()=>$("#innerart").scrollLeft(-200
+	function opl(){
+		$("#login").css('display','block');
+	}
+	var modal = document.getElementById('login');
+	window.onclick = function(event) {
+    if (event.target == modal) {
+        $("#login").css('display','none');
+    }
+	}
+
+
+</script>
+<link href="https://fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew" rel="stylesheet">
+<link rel="stylesheet" href="style.css" type="text/css" media="all">
+<style>
+html,body{direction: rtl;height:100%; margin:0;}
+body{ 
+  display:flex; 
+  flex-direction:column; 
+}
+#win {
+    margin: auto;
+    background-color: oldlace;
+    max-width: 700px;
+	//font-family: 'Varela Round', sans-serif;
+font-family: 'shmuel';
+text-align: center;
+min-width: 240px;
+
+}
+header{
+	font-size: 84px;
+    color: #f7a3a3;
+}
+footer::before{
+content: "";
+    display: block;
+    border-bottom: 1px solid #000000;
+    width: 60%;
+    position: relative;
+    right: 20%;
+}
+header::after{
+	content: "";
+    display: block;
+    border-bottom: 1px solid #000000;
+    width: 60%;
+    position: relative;
+    right: 20%;
+}
+footer{
+  margin-top: 19px; 
+  font-family: Varela Round, sans-serif;
+    font-size: 16px;
+}
+#bar{
+	font-family: Varela Round, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+}
+.it img{
+	max-width:100%;
+	max-height:100%;
+	}
+.it{display: inline-block;
+    position: relative;
+    }
+    }
+</style>
+</head>
+<body><div id="win"> 
+	<div id="bar">
+	<span onclick="opl()">
+    התחברי
+	<span>
+	| מה אני מחפשת?|ארון המטפחות שלי
+    </div>
+	 <header><img src="logo.png" style="display: inline-block;max-width:100%"></header>
+	 <img onmouseleave="clearInterval(timeoutId2);" onmouseenter="timeoutId2 = setInterval(function(){
+			   SRight();
+			}, 100);" src="rtlpoint.png" style="
+    margin-top: 167px;
+    float: right;
+"><img onmouseleave="clearInterval(timeoutId);" onmouseenter="timeoutId = setInterval(function(){
+			   SLeft();
+			}, 100);" class="sig" src="rtlpoint.png" style="
+    float: left;
+    margin-top: 167px;
+    transform: rotate( -180deg );
+">
+<article style="
+    height: 393px;
+    overflow: hidden;
+">
+<div id="innerart" style="margin-top: -54px;height: 500px;overflow-y: hidden;overflow-x: overlay;
+"><div style="
+    width: max-content;
+">
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+<div class="it"><img src="it.png"></div>
+</div>
+</div>
+</article>
+	 <footer>איך קושרים את זה? | ליצירת קשר איתנו
+</footer>
+<div style="  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;" id="login" class="modal">
+<div  style="
+    position: absolute;
+    top: 25%;
+    left: 32%;
+    width: 300px;
+    background-color: #fdf5e6;
+    border-radius: 50%;
+    border: 6px solid #ffffff;
+    box-shadow: 4px 5px 20px 0px black;
+    height: 290px;
+    ">
+    
+	<div style="
+    text-shadow: 0px 3px 10px black;
+    color: #ff0066;
+    font-size: 49px;
+    border-bottom: solid 1px;
+">התחברות</div>
+    <div style="
+    text-align: right;
+    margin: 5%;
+">
+				<label for="birds" style="
+    font-family: Varela Round, sans-serif;
+    /* text-align: right; */
+">שם משתמשת: </label>
+			<input id="birds" style="
+    border: solid 1px #f7a6a5;
+    width: 50%;
+    float: left;
+">
+			<br>
+						<label for="birds" style="
+    font-family: Varela Round, sans-serif;
+">סיסמא: </label>
+			<input id="birds" style="
+    border: solid 1px #f7a6a5;
+    float: left;
+    width: 50%;
+">
+    </div>
+
+    <button type="button" style="
+    width: 68%;
+    height: 10%;
+">התחברות</button><div style="
+    font-family: Varela Round, sans-serif;
+">התחברות באמצעות
+<br><img src="google.png" style="
+    width: 30px;
+"> <img src="facebook.png" style="
+    width: 30px;
+">
+</div></div>
+</div>
+  </div>
+  
+</body></html>
