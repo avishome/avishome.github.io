@@ -29,12 +29,30 @@ min = Math.min(window.innerHeight,window.innerWidth)
 	x.style.width = x.style.height = min - (min*0.35) + "px";
 	x=document.getElementById("birds");
 	//x.style.width = min - (min*0.2) *0.7 +'%'
+	if(detectmob()){
+		$("#bar").css("fontSize","4vw");
+		$("footer").css("fontSize","4vw");
+	}
 	}
 	function SRight(){$("#innerart").scrollLeft($("#innerart").scrollLeft()+20,0)}
 	function SLeft(){$("#innerart").scrollLeft($("#innerart").scrollLeft()-20,0)}
 	//window.onload = ()=>$("#innerart").scrollLeft(-200
 
-
+	function detectmob() { 
+	 if( navigator.userAgent.match(/Android/i)
+	 || navigator.userAgent.match(/webOS/i)
+	 || navigator.userAgent.match(/iPhone/i)
+	 || navigator.userAgent.match(/iPad/i)
+	 || navigator.userAgent.match(/iPod/i)
+	 || navigator.userAgent.match(/BlackBerry/i)
+	 || navigator.userAgent.match(/Windows Phone/i)
+	 ){
+		return true;
+	  }
+	 else {
+		return false;
+	  }
+	}
 
 </script>
 <script>
@@ -58,11 +76,11 @@ body{
 }
 @media screen and (min-width: 930px) {
 #bar{
-    font-size: 2.5vw;
+    font-size: 2vw;
 
 }
 footer{
-  font-size: 2.5vw;
+  font-size: 2vw;
 }
 }
 @media screen and (max-width: 930px) {
@@ -109,13 +127,14 @@ header::after{
 footer{
   margin-top: 19px; 
   font-family: Varela Round, sans-serif;
-  //font-size: 3.5vw;
+  text-shadow: 3px 1px 20px black;
 }
 #bar{
 	font-family: Varela Round, sans-serif;
-    //font-size: 3.5vw;
     width: 100%;
     text-align: left;
+	margin-top: 10px;
+	text-shadow: 3px 1px 20px black;
 }
 .it img{
 	max-width:100%;
