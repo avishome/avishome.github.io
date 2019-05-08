@@ -4,6 +4,8 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  
+  
 <script>
 
 window.onload = window.onresize = ()=>{
@@ -23,21 +25,28 @@ min = Math.min(window.innerHeight,window.innerWidth)
 	l =[0,105,154,206,261,300,310]
 	//for(var i=0; i<x.length; i++){x[i].style.width = u[i]*0.01*hei+"px"; x[i].style.top = ((t[i]-50)*(hei-u[i]*0.01*hei)*0.01)+"px"; x[i].style.right = "-"+l[i]+"px";}
 	for(var i=0; i<x.length; i++){s=$(x[i]).children()[0];s.style.height = u[i]+"%"; s.style.marginBottom = t[i]+"%";s.style.marginLeft = "-"+t[i]+"%";}
+	x=document.getElementById("login");
+	x.style.width = x.style.height = min - (min*0.35) + "px";
+	x=document.getElementById("birds");
+	//x.style.width = min - (min*0.2) *0.7 +'%'
 	}
 	function SRight(){$("#innerart").scrollLeft($("#innerart").scrollLeft()+20,0)}
 	function SLeft(){$("#innerart").scrollLeft($("#innerart").scrollLeft()-20,0)}
 	//window.onload = ()=>$("#innerart").scrollLeft(-200
+
+
+
+</script>
+<script>
 	function opl(){
-		$("#login").css('display','block');
+		$("#login2").css('display','block');
 	}
-	var modal = document.getElementById('login');
+	var modal = $("#login2");
 	window.onclick = function(event) {
-    if (event.target == modal) {
-        $("#login").css('display','none');
+    if (event.target.id == "login2") {
+        $("#login2").css('display','none');
     }
 	}
-
-
 </script>
 <link href="https://fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew" rel="stylesheet">
 <link rel="stylesheet" href="style.css" type="text/css" media="all">
@@ -47,12 +56,30 @@ body{
   display:flex; 
   flex-direction:column; 
 }
+@media screen and (min-width: 930px) {
+#bar{
+    font-size: 2.5vw;
+
+}
+footer{
+  font-size: 2.5vw;
+}
+}
+@media screen and (max-width: 930px) {
+#bar{
+    font-size: 3.5vw;
+
+}
+footer{
+  font-size: 3.5vw;
+}
+}
 #win {
 	height: 100%;
 	width:100%;
     margin: auto;
     background-color: #fde6fb;
-    //max-width: 700px;
+    //max-width: 800px;
 	//font-family: 'Varela Round', sans-serif;
 font-family: 'shmuel';
 text-align: center;
@@ -82,11 +109,11 @@ header::after{
 footer{
   margin-top: 19px; 
   font-family: Varela Round, sans-serif;
-    font-size: 2vw;
+  //font-size: 3.5vw;
 }
 #bar{
 	font-family: Varela Round, sans-serif;
-    font-size: 2vw;
+    //font-size: 3.5vw;
     width: 100%;
     text-align: left;
 }
@@ -102,7 +129,8 @@ footer{
 </style>
 </head>
 <body><div id="win"> 
-	<div id="bar">
+	<div id="bar" class="h3">
+	
 	<span onclick="opl()">
     התחברי
 	<span>
@@ -140,71 +168,65 @@ footer{
 </div>
 </div>
 </article>
-	 <footer>איך קושרים את זה? | ליצירת קשר איתנו
+	 <footer class="h3">איך קושרים את זה? | ליצירת קשר איתנו
 </footer>
-<div style="  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;" id="login" class="modal">
-<div  style="
-    position: absolute;
-    top: 25%;
-    left: 32%;
-    width: 300px;
+<div id="login2" style="display: none; position: fixed; z-index: 1; left: 0px; top: 0px; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); padding-top: 60px;" class="modal">
+<div id="login" style="
+font-size: 3vw;
+	margin: auto;
     background-color: #fdf5e6;
     border-radius: 50%;
     border: 6px solid #ffffff;
     box-shadow: 4px 5px 20px 0px black;
-    height: 290px;
+	padding: 10%;
     ">
     
 	<div style="
     text-shadow: 0px 3px 10px black;
     color: #ff0066;
-    font-size: 49px;
     border-bottom: solid 1px;
+    font-size: 6vw;
+    width: 50%;
+    margin: auto;
+	margin-top: -10%;
 ">התחברות</div>
     <div style="
     text-align: right;
     margin: 5%;
 ">
-				<label for="birds" style="
+			<p>	<label for="birds" style="
     font-family: Varela Round, sans-serif;
-    /* text-align: right; */
 ">שם משתמשת: </label>
 			<input id="birds" style="
     border: solid 1px #f7a6a5;
-    width: 50%;
     float: left;
-">
-			<br>
+    width: 40%;
+	height: 7%;
+"></p>
+			<p>
 						<label for="birds" style="
     font-family: Varela Round, sans-serif;
 ">סיסמא: </label>
 			<input id="birds" style="
     border: solid 1px #f7a6a5;
     float: left;
-    width: 50%;
+    width: 40%;
+	height: 7%;
 ">
+</p>
     </div>
 
     <button type="button" style="
+    font-size: 2vw;
     width: 68%;
     height: 10%;
 ">התחברות</button><div style="
     font-family: Varela Round, sans-serif;
 ">התחברות באמצעות
 <br><img src="google.png" style="
-    width: 30px;
+    width: 10%
 "> <img src="facebook.png" style="
-    width: 30px;
+    width: 10%;
 ">
 </div></div>
 </div>
