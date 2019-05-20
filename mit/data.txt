@@ -1,0 +1,186 @@
+arr = [
+ {
+   "name": "קיץ חלומי",
+   "texture": "wool",
+   "color": "green",
+   "price": 25,
+   "picture": "1.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "ערב המדבר",
+   "texture": "wool",
+   "color": "red",
+   "price": 40,
+   "picture": "2.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "זריחות שקטות",
+   "texture": "wool",
+   "color": "blue",
+   "price": 36,
+   "picture": "3.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "רוח בין ערביים",
+   "texture": "wool",
+   "color": "white",
+   "price": 100,
+   "picture": "4.jpg",
+   "studio": "בית הבד"
+ },
+ {
+   "name": "ים סוף",
+   "texture": "lycra",
+   "color": "green",
+   "price": 100,
+   "picture": "5.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "שקט בין ערביים",
+   "texture": "lycra",
+   "color": "red",
+   "price": 150,
+   "picture": "6.jpg",
+   "studio": "בית הבד"
+ },
+ {
+   "name": "יום נעים",
+   "texture": "lycra",
+   "color": "blue",
+   "price": 15,
+   "picture": "7.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "נזר הבריאה",
+   "texture": "lycra",
+   "color": "green",
+   "price": 10,
+   "picture": "8.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "השחור",
+   "texture": "Paper",
+   "color": "black",
+   "price": 69,
+   "picture": "9.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "חלק מאוד",
+   "texture": "Paper",
+   "color": "white",
+   "price": 55.7,
+   "picture": "10.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "תל אביב",
+   "texture": "Paper",
+   "color": "blue",
+   "price": 36.9,
+   "picture": "11.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "כתיבה",
+   "texture": "Paper",
+   "color": "black",
+   "price": 49.9,
+   "picture": "12.jpg",
+   "studio": "בית הבד"
+ },
+ {
+   "name": "מערכת לחוצה",
+   "texture": "Smooth",
+   "color": "green",
+   "price": 49.9,
+   "picture": "13.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "תכלת ואודם",
+   "texture": "Smooth",
+   "color": "red",
+   "price": 100,
+   "picture": "14.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "ורד הגליל",
+   "texture": "Smooth",
+   "color": "black",
+   "price": 399.9,
+   "picture": "15.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "שוקולד פרה",
+   "texture": "Smooth",
+   "color": "blue",
+   "price": 120,
+   "picture": "16.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "כבשים",
+   "texture": "Smooth",
+   "color": "green",
+   "price": 40,
+   "picture": "17.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "שור הבר",
+   "texture": "inlaid",
+   "color": "red",
+   "price": 20,
+   "picture": "18.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "סביבות ירושלים",
+   "texture": "inlaid",
+   "color": "blue",
+   "price": 25,
+   "picture": "19.jpg",
+   "studio": "בית הבד"
+ },
+ {
+   "name": "Israel",
+   "texture": "inlaid",
+   "color": "green",
+   "price": 55,
+   "picture": "20.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "אמונה",
+   "texture": "inlaid",
+   "color": "blue",
+   "price": 99.9,
+   "picture": "21.jpg",
+   "studio": "אומנות בעץ"
+ },
+ {
+   "name": "מטפחת ביסיק",
+   "texture": "inlaid",
+   "color": "red",
+   "price": 45,
+   "picture": "22.jpg",
+   "studio": "איתכסיא"
+ },
+ {
+   "name": "דשא",
+   "texture": "inlaid",
+   "color": "green",
+   "price": 70,
+   "picture": "23.jpg",
+   "studio": "איתכסיא"
+ }
+]
