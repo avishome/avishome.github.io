@@ -7,7 +7,7 @@
   <!-- CSS -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <!-- JavaScript -->
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
 
 <script>
 
@@ -67,16 +67,19 @@ min = Math.min(window.innerHeight,window.innerWidth)
 	sea = [];
 	pass = false;
 	}
+
 	function Aj(ob){
 		$.ajax( {
 		  url: "https://us-central1-vivid-fragment-225620.cloudfunctions.net/function-3",
 		  dataType: "jsonp",
 		  data: ob,
 		  success: function( data ) {
-			for(It of data){
+		  	for(It of data){
 				console.log(searchItems.push({"tag":ob,"data":It,"obj":$("<div id="+Math.random()+" class='carousel-cell'><img src='pic/"+It.picture+"' /></div>")}));
-				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );}, (searchItems.length%10)*30,searchItems.length-1);
+				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );}, (searchItems.length%10)*300,searchItems.length-1);
 			}
+			searchItems[searchItems.length-1].obj.children().first().on("load",()=>{alert("x");for(i=0;i<10;i++){$('.main-carousel').last().flickity( 'previous', true )}})
+
 		  }
 		  }).fail(function() {
 				console.log("בעיית תקשורת");
@@ -117,8 +120,12 @@ min = Math.min(window.innerHeight,window.innerWidth)
 	$(()=>{$('.main-carousel').flickity({
   // options
   cellAlign: 'left',
+   lazyLoad: true,
   wrapAround: true
-});})
+});});
+$(()=>{for(i=0;i<10;i++){$('.main-carousel').first().flickity( 'previous', true )}})
+$(()=>{for(i=0;i<10;i++){$('.main-carousel').first().next().flickity( 'previous', true )}})
+
 </script>
 <link href="https://fonts.googleapis.com/css?family=Varela+Round&amp;subset=hebrew" rel="stylesheet">
 <link rel="stylesheet" href="style.css" type="text/css" media="all">
@@ -386,17 +393,17 @@ footer{
 	
 
 			<div class="main-carousel Fsl" >
-  <div class="carousel-cell"><img v="red" src="pic/c3.png" alt="" /></div>
-  <div class="carousel-cell"><img v="blue" src="pic/c2.png" alt="" /></div>
-  <div class="carousel-cell"><img v="green" src="pic/c4.png" alt="" /></div>
-    <div class="carousel-cell"><img v="white" src="pic/c6.png" alt="" /></div>
-  <div class="carousel-cell"><img v="black" src="pic/c5.png" alt="" /></div>
-  <div class="carousel-cell"><img v="yellow" src="pic/c1.png" alt="" /></div>
+  <div class="carousel-cell"><img v="red" data-flickity-lazyload="pic/c3.png" alt="" /></div>
+  <div class="carousel-cell"><img v="blue" data-flickity-lazyload="pic/c2.png" alt="" /></div>
+  <div class="carousel-cell"><img v="green" data-flickity-lazyload="pic/c4.png" alt="" /></div>
+    <div class="carousel-cell"><img v="white" data-flickity-lazyload="pic/c6.png" alt="" /></div>
+  <div class="carousel-cell"><img v="black" data-flickity-lazyload="pic/c5.png" alt="" /></div>
+  <div class="carousel-cell"><img v="yellow" data-flickity-lazyload="pic/c1.png" alt="" /></div>
 </div>
 			<div class="main-carousel Ssl" >
-  <div class="carousel-cell"><img v="mesi" src="pic/r3.png" alt="" /></div>
-  <div class="carousel-cell"><img v="sqer" src="pic/r2.png" alt="" /></div>
-  <div class="carousel-cell"><img v="points" src="pic/r1.png" alt="" /></div>
+  <div class="carousel-cell"><img v="mesi" data-flickity-lazyload="pic/r3.png" alt="" /></div>
+  <div class="carousel-cell"><img v="sqer" data-flickity-lazyload="pic/r2.png" alt="" /></div>
+  <div class="carousel-cell"><img v="points" data-flickity-lazyload="pic/r1.png" alt="" /></div>
 			</div>
 	<!--div class="article">
 		<article style="height: 15%; overflow: hidden;">
