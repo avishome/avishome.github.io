@@ -76,9 +76,9 @@ min = Math.min(window.innerHeight,window.innerWidth)
 		  success: function( data ) {
 		  	for(It of data){
 				console.log(searchItems.push({"tag":ob,"data":It,"obj":$("<div id="+Math.random()+" class='carousel-cell'><img src='pic/"+It.picture+"' /></div>")}));
-				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );}, (searchItems.length%10)*300,searchItems.length-1);
+				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );}, (searchItems.length%10)*50,searchItems.length-1);
 			}
-			searchItems[searchItems.length-1].obj.children().first().on("load",()=>{alert("x");for(i=0;i<10;i++){$('.main-carousel').last().flickity( 'previous', true )}})
+			searchItems[searchItems.length-1].obj.children().first().on("load",()=>{for(i=0;i<10;i++){$('.main-carousel').last().flickity( 'previous', true )}})
 
 		  }
 		  }).fail(function() {
