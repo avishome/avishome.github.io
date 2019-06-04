@@ -45,7 +45,7 @@ min = Math.min(window.innerHeight,window.innerWidth)
 		$("#login").css("fontSize","2vw");*/
 	}
 	$("body").click((x)=>{if($(x.target).parent().parent().parent().parent().hasClass("Fsl")){$(x.target).toggleClass("boldimg");Sendsearch($(x.target).attr("v"),"Fc")}})
-	$("body").click((x)=>{if($(x.target).parent().parent().parent().parent().hasClass("Ssl")){$(x.target).toggleClass("boldimg");Sendsearch("x","Sc")}})
+	$("body").click((x)=>{if($(x.target).parent().parent().parent().parent().hasClass("Ssl")){$(x.target).toggleClass("boldimg");Sendsearch($(x.target).attr("v"),"Sc")}})
 	
 	}
 	searchItems = [];
@@ -75,10 +75,10 @@ min = Math.min(window.innerHeight,window.innerWidth)
 		  data: ob,
 		  success: function( data ) {
 		  	for(It of data){
-				console.log(searchItems.push({"tag":ob,"data":It,"obj":$("<div id="+Math.random()+" class='carousel-cell'><img src='pic/"+It.picture+"' /></div>")}));
-				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );}, (searchItems.length%10)*300,searchItems.length-1);
+				console.log(searchItems.push({"tag":ob,"data":It,"obj":$("<div id="+Math.random()+" class='carousel-cell'><img data-flickity-lazyload='pic/"+It.picture+"' /></div>")}));
+				setTimeout(function(x){$('.main-carousel').last().flickity( 'append',searchItems[x].obj );$('.main-carousel').last().flickity( 'previous', true );}, (searchItems.length%10)*300,searchItems.length-1);
 			}
-			searchItems[searchItems.length-1].obj.children().first().on("load",()=>{for(i=0;i<10;i++){$('.main-carousel').last().flickity( 'previous', true )}})
+			//searchItems[searchItems.length-1].obj.children().first().on("load",()=>{for(i=0;i<10;i++){$('.main-carousel').last().flickity( 'previous', true )}})
 
 		  }
 		  }).fail(function() {
@@ -154,9 +154,9 @@ $(()=>{for(i=0;i<10;i++){$('.main-carousel').first().next().flickity( 'previous'
   <div class="carousel-cell"><img v="yellow" data-flickity-lazyload="pic/c1.png" alt="" /></div>
 </div>
 			<div class="main-carousel Ssl" >
-  <div class="carousel-cell"><img v="mesi" data-flickity-lazyload="pic/r3.png" alt="" /></div>
-  <div class="carousel-cell"><img v="sqer" data-flickity-lazyload="pic/r2.png" alt="" /></div>
-  <div class="carousel-cell"><img v="points" data-flickity-lazyload="pic/r1.png" alt="" /></div>
+  <div class="carousel-cell"><img v="wool" data-flickity-lazyload="pic/r3.png" alt="" /></div>
+  <div class="carousel-cell"><img v="lycra" data-flickity-lazyload="pic/r2.png" alt="" /></div>
+  <div class="carousel-cell"><img v="Paper" data-flickity-lazyload="pic/r1.png" alt="" /></div>
 			</div>
 	<!--div class="article">
 		<article style="height: 15%; overflow: hidden;">
