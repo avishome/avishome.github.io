@@ -1,0 +1,105 @@
+<script>
+    var GoogleAuth;
+    var SCOPE = 'https://mail.google.com/';
+    function handleClientLoad() {
+      // Load the API's client and auth2 modules.
+      // Call the initClient function after the modules load.
+      gapi.load('client:auth2', initClient);
+    }
+  
+    function initClient() {
+      // In practice, your app can retrieve one or more discovery documents.
+      var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/drive/v3/rest';
+  
+      // Initialize the gapi.client object, which app uses to make API requests.
+      // Get API key and client ID from API Console.
+      // 'scope' field specifies space-delimited list of access scopes.
+      gapi.client.init({
+          'apiKey': 'AIzaSyD4Kvrvtor9YxllNzY0GF76p9nlYLohNLg',
+          'clientId': '695845058871-a2lh5oisrupk1pe9lf1sqvljfm9jrj8a.apps.googleusercontent.com',
+          'discoveryDocs': [discoveryUrl],
+          'scope': SCOPE
+      }).then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance();
+        //gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+  
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get();
+        setSigninStatus();
+  
+        // Call handleAuthClick function when user clicks on
+        //      "Sign In/Authorize" button.
+        $('#sign-in-or-out-button').click(function() {
+          handleAuthClick();
+        });
+        $('#revoke-access-button').click(function() {
+          revokeAccess();
+        });
+      });
+    }
+  
+    function handleAuthClick() {
+      if (GoogleAuth.isSignedIn.get()) {
+        // User is authorized and has clicked "Sign out" button.
+        GoogleAuth.signOut();
+      } else {
+        // User is not signed in. Start Google auth flow.
+        GoogleAuth.signIn();
+      }
+    }
+  
+    function revokeAccess() {
+      GoogleAuth.disconnect();
+    }
+  
+    function setSigninStatus() {
+      var user = GoogleAuth.currentUser.get();
+      var isAuthorized = user.hasGrantedScopes(SCOPE);
+      if (isAuthorized) {
+        $('#sign-in-or-out-button').html('להתנתק');
+        $('#revoke-access-button').css('display', 'inline-block');
+        $('#auth-status').html('התחברת וקיבלת הרשאות, להלן סיסמא חד פעמית ');
+        $('#password').html(gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token);
+        $('#copyAction').css('display', 'inline');
+      } else {
+        $('#sign-in-or-out-button').html('להתחבר לחשבון');
+        $('#revoke-access-button').css('display', 'none');
+        $('#auth-status').html('מנותק כעת מהחשבון');
+        $('#password').html('');
+        $('#copyAction').css('display', 'none');
+      }
+    }
+  
+    function updateSigninStatus() {
+      setSigninStatus();
+    }
+
+    function copyToClipboard() {
+      var $temp = $("<input>");
+      $("html").append($temp);
+      $temp.val($('#password').text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
+  </script>
+  <html dir="rtl">
+  <button id="sign-in-or-out-button"
+          style="margin-left: 25px">להתחבר לחשבון</button>
+  <button id="revoke-access-button"
+          style="display: none; margin-left: 25px">לאפס הרשאות</button>
+  
+  <div id="auth-status" style="display: inline; padding-left: 25px"></div><hr>
+  <div id="password" style="display: block;
+                          font-size: smaller;
+                          line-break: anywhere;
+                          width: 283px;
+                          padding-inline-start: 50px;"></div>
+  <button id="copyAction" style="display: none;" onclick="copyToClipboard()">להעתיק ללוח</button>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"
+          onload="this.onload=function(){};handleClientLoad()"
+          onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+  </html>
