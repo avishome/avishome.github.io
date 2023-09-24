@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-critters-container>
+<head>
+  <meta charset="utf-8">
+
+  <meta name="importmap-type" content="systemjs-importmap">
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "app1": "../app1/main.js",
+        "app2": "../app2/main.js",
+        "app3": "../app3/main.js",
+        "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
+      }
+    }
+  </script>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js" as="script" crossorigin="anonymous">
+  <script src="https://unpkg.com/core-js-bundle@3.1.4/minified.js"></script>
+  <script src="https://unpkg.com/zone.js@0.10.3/dist/zone.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/amd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script>
+
+  <title>AppContainer</title>
+  <base href="/MultiRoutersPoc/dist/app-container/index.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>@charset "UTF-8"</style><link rel="stylesheet" href="styles.4cdbedec17e762da.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.4cdbedec17e762da.css"></noscript></head>
+<body>
+  <app-root></app-root>
+<script src="runtime.e9274a65c601e86c.js" type="module"></script><script src="polyfills.b58950dc0ab4d871.js" type="module"></script><script src="main.88de48cce1ab55d1.js" type="module"></script></body>
+</html>
