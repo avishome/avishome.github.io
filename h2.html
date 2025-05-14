@@ -9,21 +9,22 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Dark background */
-            color: #f9fafb; /* Light text */
+            background-color: #111827;
+            color: #f9fafb;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            direction: rtl; /* Added for Hebrew text */
         }
 
         .container {
             max-width: 800px;
             padding: 2rem;
             border-radius: 0.75rem;
-            background-color: #1f2937; /* Slightly lighter container background */
+            background-color: #1f2937;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
             text-align: center;
             border: 1px solid #4b5563;
@@ -96,6 +97,7 @@
             font-size: 0.875rem;
             overflow-wrap: break-word;
             border: 1px solid #6b7280;
+            text-align: left; /* Added for LTR token display */
         }
 
         .hidden {
@@ -119,21 +121,21 @@
 <body>
     <div class="container">
         <h1 class="heading">Google Auth Token</h1>
-        <p class="description">Displaying the Google Auth Token after successful login.</p>
+        <p class="description">הצגת טוקן אימות של גוגל לאחר התחברות מוצלחת.</p>
 
         <button id="auth-button" class="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-google w-5 h-5 mr-2">
                 <path d="M20.27 9.6c.3-1.8 1.6-3.3 3.8-3.3h.1c1.7 0 3.2 1.3 3.2 3s-1.5 3-3.3 3c-1.3 0-2.4-.7-3-1.7h-.1c-.5 0-1.5.3-2.3.9-.8.6-1.2 1.4-1.2 2.3 0 1.5.7 2.7 2.3 3.5 1.6.8 3.5 1.3 5.4 1.3 3.3 0 6.6-2.5 6.6-6.3 0-3.7-2.9-6.6-6.5-6.6-4.1 0-7.3 3-7.7 6.8-.5 2.1-2.3 3.6-4.6 3.6-2.7 0-5-2.1-5-5s2.3-5 5-5c1.7 0 3.2.7 4.3 1.8l3.2-3c-1.9-1.4-4.5-2.2-7-2.2-5.8 0-10.5 4.8-10.5 10.3 0 5.7 4.3 10.5 10 10.5 3.9 0 7.3-2.2 8.8-5.6 1.3-2.8 1.1-6.4-.6-8.6z"></path>
             </svg>
-            Sign in with Google
+            התחבר באמצעות גוגל
         </button>
-        <button id="sign-out-button" class="hidden">Sign Out</button>
+        <button id="sign-out-button" class="hidden">התנתק</button>
 
         <div id="token-display" class="hidden">
             <h2 class="text-lg font-semibold mb-2 text-red-400">ID Token:</h2>
             <p id="token-value" class="font-mono text-sm"></p>
         </div>
-        <p id="success-message" class="success-message hidden">Successfully signed in! Token is displayed below.</p>
+        <p id="success-message" class="success-message hidden">התחברת בהצלחה! הטוקן מוצג למטה.</p>
     </div>
 
     <script>
@@ -188,14 +190,24 @@
      */
     function handleSignOut() {
         google.accounts.id.disableAutoSelect();
-        google.accounts.id.revoke(googleUser.id, () => {
+        // Check if googleUser is defined before attempting to use its properties
+        if (googleUser) {
+            google.accounts.id.revoke(googleUser.id, () => {
+                console.log('User signed out.');
+                tokenDisplay.classList.add('hidden');
+                tokenValue.textContent = '';
+                authButton.classList.remove('hidden');
+                signOutButton.classList.add('hidden');
+                successMessage.classList.add('hidden');
+            });
+        } else {
             console.log('User signed out.');
             tokenDisplay.classList.add('hidden');
             tokenValue.textContent = '';
             authButton.classList.remove('hidden');
             signOutButton.classList.add('hidden');
             successMessage.classList.add('hidden');
-        });
+        }
     }
 
     // --- Initialization ---
