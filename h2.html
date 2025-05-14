@@ -9,6 +9,21 @@
     <div id="authResult"></div>
 
     <script>
+        function getAccessTokenFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('access_token');
+}
+        function setCookie(name, value, days = 1) {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+}
+        const token = getAccessTokenFromURL();
+if (token) {
+  setCookie('access_token', token);
+  console.log('הטוקן נשמר בעוגייה:', token);
+} else {
+  console.warn('access_token לא נמצא ב־URL');
+}
         const clientId = '695845058871-a2lh5oisrupk1pe9lf1sqvljfm9jrj8a.apps.googleusercontent.com'; // Replace with your actual client ID
         const redirectUri = 'https://avishome.github.io/hh2.html'; // Or your registered redirect URI
         const scope = 'https://mail.google.com/';
