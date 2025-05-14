@@ -5,15 +5,19 @@
 </head>
 <body>
   <h1>OAuth Token Exchange</h1>
-    <input id="secret" />
-    <button onclick="create(secret.value)">send</button>
   <pre id="result">Loading...</pre>
-
+  <div id="resultElem">
+    <pre id="tokenDisplay"></pre>
+  </div>
   <script>
-      function create(key){
+        function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+      function create(){
     // הגדר כאן את הפרטים שלך
     const clientId = '695845058871-a2lh5oisrupk1pe9lf1sqvljfm9jrj8a.apps.googleusercontent.com';
-    const clientSecret = key; // לא בטוח לשים את זה פה!
+    const clientSecret = getCookie('access_token');
     const redirectUri = 'https://avishome.github.io/hh2.html';
     const tokenEndpoint = 'https://oauth2.googleapis.com/token';
 
@@ -38,8 +42,12 @@
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        resultElem.textContent = JSON.stringify(data, null, 2);
+        const token = data.access_token;
+        
+        // מציג את הטוקן בצורה ברורה וקלילה
+        const tokenDisplay = document.getElementById('tokenDisplay');
+        tokenDisplay.textContent = token;
+
       })
       .catch(err => {
         console.error(err);
@@ -49,6 +57,7 @@
       resultElem.textContent = 'No authorization code found in URL.';
     }
       }
+create()
   </script>
 </body>
 </html>
