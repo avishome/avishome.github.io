@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gmail Permission Request Result</title>
+</head>
+<body>
+    <h1>Gmail Access Result</h1>
+    <div id="authResult"></div>
+
+    <script>
+        // Function to extract query parameters from the URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Check for the authorization code or error in the URL
+        const authCode = getQueryParam('code');
+        const error = getQueryParam('error');
+
+        const authResultDiv = document.getElementById('authResult');
+
+        if (authCode) {
+            authResultDiv.textContent = `Authorization Code received: ${authCode}.`;
+            // IMPORTANT: Since you have a static page, you cannot securely exchange
+            // this code for an access token client-side. You would typically send
+            // this code to a backend server for that purpose.
+
+            // For demonstration purposes only (VERY INSECURE - DO NOT DO IN PRODUCTION):
+            // You might attempt a client-side flow (Implicit Grant), but this is
+            // generally discouraged for scopes that provide access to user data
+            // and is being phased out.
+
+            // If you have a very specific, limited use case and understand the
+            // security implications, you might consider a client-side flow that
+            // expects an access token directly in the redirect (response_type=token).
+            // However, for the 'code' flow (which is generally recommended), you need a backend.
+
+            // Clear the code from the URL for security (optional but recommended)
+            window.history.replaceState({}, document.title, window.location.pathname);
+
+        } else if (error) {
+            authResultDiv.textContent = `Error during authorization: ${error}`;
+            const errorDescription = getQueryParam('error_description');
+            if (errorDescription) {
+                authResultDiv.textContent += ` - ${errorDescription}`;
+            }
+            // Clear the error from the URL (optional but recommended)
+            window.history.replaceState({}, document.title, window.location.pathname);
+
+        } else {
+            authResultDiv.textContent = 'Authorization process not initiated or completed yet.';
+        }
+    </script>
+</body>
+</html>
