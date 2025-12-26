@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="./assets/index-CEJdCsew.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B0wmLtuu.css">
+  <script type="module" crossorigin src="./assets/index-GcGoS9k5.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-D-skIxtF.css">
 </head>
 
 <body>
@@ -20,12 +20,25 @@
       <div class="current-time-indicator"></div>
     </div>
 
-    <!-- Event Card Popup -->
+    <!-- Event Card Popup (Legacy/Fallback or secondary) -->
     <div class="event-card" id="event-card">
       <button class="close-btn">&times;</button>
       <h3 id="card-title">Event Title</h3>
-      <p id="card-time">14:00</p>
-      <p id="card-desc">Description goes here...</p>
+      <p id="card-time"></p>
+      <p id="card-desc"></p>
+    </div>
+
+    <!-- Linear Schedule Overlay ("Flattened Clock") -->
+    <div id="linear-overlay" class="overlay hidden">
+      <div class="overlay-content">
+        <button class="overlay-close-btn">&times;</button>
+        <div class="overlay-header">
+          <h2>Daily Schedule</h2>
+        </div>
+        <div id="linear-list" class="linear-list">
+          <!-- Items injected by JS -->
+        </div>
+      </div>
     </div>
 
   </div>
